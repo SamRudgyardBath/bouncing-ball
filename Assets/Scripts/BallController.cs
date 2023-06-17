@@ -34,4 +34,49 @@ public class BallController : MonoBehaviour
         worldLoc.position = pos;
     }
 
+    /// <summary>
+    /// This function is called every fixed framerate frame, if the MonoBehaviour is enabled.
+    /// </summary>
+    void FixedUpdate() {
+        for (int substep = 0; substep < noOfSubsteps; substep++) {
+            // Update the ball's position and velocity each frame
+            pos += v * substep/noOfSubsteps * Time.deltaTime;
+            v += a * substep/noOfSubsteps * Time.deltaTime;
+        }
+
+        // Bounce off of sides of the cube
+        float halfCubeLength = cubeLength/2f;
+        float ballMinX = pos.x - radius;
+        float ballMinY = pos.y - radius;
+        float ballMinZ = pos.z - radius;
+        float ballMaxX = pos.x + radius;
+        float ballMaxY = pos.y + radius;
+        float ballMaxZ = pos.z + radius;
+        if (!isWithinBox) {
+            if (ballMinX < -halfCubeLength || ballMaxX > halfCubeLength) {
+                v.x *= -1f;
+                // v.x *= coeffRestitution;
+            }
+            if (ballMinY < -halfCubeLength || ballMaxY > halfCubeLength) {
+                v.y *= -1f;
+                // v.y *= coeffRestitution;
+            }
+            if (ballMinZ < -halfCubeLength || ballMaxZ > halfCubeLength) {
+                v.z *= -1f;
+                // v.z *= coeffRestitution;
+            }
+        }
+    }
+
+    bool IsWithinBox() {
+        float halfCubeLength = cubeLength/2f;
+        float ballMinX = pos.x - radius;
+        float ballMinY = pos.y - radius;
+        float ballMinZ = pos.z - radius;
+        float ballMaxX = pos.x + radius;
+        float ballMaxY = pos.y + radius;
+        float ballMaxZ = pos.z + radius;
+        bool isWithinBox = (ballMinX >= halfCubeLength) && (ballMaxX <= halfCubeLength) && (ballMinY >= halfCubeLength) && (ballMaxY <= halfCubeLength) && (ballMinZ >= halfCubeLength) && (ballMaxZ <= halfCubeLength);
+        return isWithinBox;
+    }
 }
