@@ -5,7 +5,6 @@ using UnityEngine;
 public class BallController : MonoBehaviour
 {
     #region Public Attributes
-    public Transform worldLoc;
     public float radius;
     public float cubeLength;
     public float coeffRestitution = 0.5f;
@@ -13,25 +12,24 @@ public class BallController : MonoBehaviour
     #region Private Attributes
     private Vector3 pos;
     private Vector3 v;
-    private Vector3 a;
+    private Vector3 a = new Vector3(0, -9.81f, 0);
+    
     private bool isWithinBox;
     private int noOfSubsteps = 5;
     #endregion
 
     // Start is called before the first frame update
     void Start() {
-        // Initialise position and velocity
-        pos = new Vector3(0, 0, 0);
-        v = new Vector3(0, 0, 1);
-        a = new Vector3(0, -9.81f, 0);
-        radius = 1f;
+        radius = Random.value * 2f;
+        pos = new Vector3(Random.Range(-1, 1), 0, Random.Range(-1, 1));
+        v = new Vector3(Random.Range(-1, 1), 0, Random.Range(-1, 1));
         transform.localScale = new Vector3(2*radius, 2*radius, 2*radius);
     }
 
     // Update is called once per frame
     void Update() {
         // Update the object's position
-        worldLoc.position = pos;
+        transform.position = pos;
     }
 
     /// <summary>
@@ -45,7 +43,7 @@ public class BallController : MonoBehaviour
         }
 
         // Bounce off of sides of the cube
-        
+        CheckForWallCollision();
     }
 
     /// <summary>
@@ -115,5 +113,9 @@ public class BallController : MonoBehaviour
             v.z *= -1f;
             // v.z *= coeffRestitution;
         }
+    }
+
+    void CheckForBallCollision() {
+        // Implementation
     }
 }
