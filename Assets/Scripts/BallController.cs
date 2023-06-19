@@ -21,7 +21,7 @@ public class BallController : MonoBehaviour
     // Start is called before the first frame update
     void Start() {
         // Initialise position and velocity
-        pos = worldLoc.position;
+        pos = new Vector3(0, 0, 0);
         v = new Vector3(0, 0, 1);
         a = new Vector3(0, -9.81f, 0);
         radius = Random.value * 5f;
