@@ -68,6 +68,35 @@ public class BallController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Callback to draw gizmos that are pickable and always drawn.
+    /// </summary>
+    void OnDrawGizmos() {
+        float halfCubeLength = cubeLength/2f;
+        Vector3 frontLeftDownPoint = new Vector3(halfCubeLength, -halfCubeLength, halfCubeLength);
+        Vector3 backLeftDownPoint = new Vector3(halfCubeLength, -halfCubeLength, -halfCubeLength);
+        Vector3 frontRightDownPoint = new Vector3(-halfCubeLength, -halfCubeLength, halfCubeLength);
+        Vector3 backRightDownPoint = new Vector3(-halfCubeLength, -halfCubeLength, -halfCubeLength);
+        Vector3 frontLeftUpPoint = new Vector3(halfCubeLength, halfCubeLength, halfCubeLength);
+        Vector3 backLeftUpPoint = new Vector3(halfCubeLength, halfCubeLength, -halfCubeLength);
+        Vector3 frontRightUpPoint = new Vector3(-halfCubeLength, halfCubeLength, halfCubeLength);
+        Vector3 backRightUpPoint = new Vector3(-halfCubeLength, halfCubeLength, -halfCubeLength);
+        
+        Gizmos.DrawLine(frontLeftDownPoint, backLeftDownPoint);
+        Gizmos.DrawLine(frontLeftDownPoint, frontLeftUpPoint);
+        Gizmos.DrawLine(frontLeftDownPoint, frontRightDownPoint);
+        Gizmos.DrawLine(frontLeftUpPoint, backLeftUpPoint);
+        Gizmos.DrawLine(backLeftDownPoint, backLeftUpPoint);
+        Gizmos.DrawLine(backLeftDownPoint, backRightDownPoint);
+        Gizmos.DrawLine(frontRightDownPoint, backRightDownPoint);
+        Gizmos.DrawLine(backRightDownPoint, backRightUpPoint);
+        Gizmos.DrawLine(frontRightDownPoint, frontRightUpPoint);
+        Gizmos.DrawLine(frontLeftUpPoint, frontRightUpPoint);
+        Gizmos.DrawLine(frontLeftUpPoint, frontRightUpPoint);
+        Gizmos.DrawLine(frontRightUpPoint, backRightUpPoint);
+        Gizmos.DrawLine(backLeftUpPoint, backRightUpPoint);
+    }
+
     bool IsWithinBox() {
         float halfCubeLength = cubeLength/2f;
         float ballMinX = pos.x - radius;
