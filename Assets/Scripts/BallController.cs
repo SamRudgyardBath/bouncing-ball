@@ -52,19 +52,32 @@ public class BallController : MonoBehaviour
         float ballMaxX = pos.x + radius;
         float ballMaxY = pos.y + radius;
         float ballMaxZ = pos.z + radius;
-        if (!isWithinBox) {
-            if (ballMinX < -halfCubeLength || ballMaxX > halfCubeLength) {
-                v.x *= -1f;
-                // v.x *= coeffRestitution;
-            }
-            if (ballMinY < -halfCubeLength || ballMaxY > halfCubeLength) {
-                v.y *= -1f;
-                // v.y *= coeffRestitution;
-            }
-            if (ballMinZ < -halfCubeLength || ballMaxZ > halfCubeLength) {
-                v.z *= -1f;
-                // v.z *= coeffRestitution;
-            }
+        if (ballMinX < -halfCubeLength) {
+            pos.x = -halfCubeLength + radius;
+            v.x *= -1f;
+        } 
+        else if (ballMaxX > halfCubeLength) {
+            pos.x = halfCubeLength - radius;
+            v.x *= -1f;
+            // v.x *= coeffRestitution;
+        }
+        if (ballMinY < -halfCubeLength) {
+            pos.y = -halfCubeLength + radius;
+            v.y *= -1f;
+        }
+        else if (ballMaxY > halfCubeLength) {
+            pos.y = halfCubeLength - radius;
+            v.y *= -1f;
+            // v.y *= coeffRestitution;
+        }
+        if (ballMinZ < -halfCubeLength) {
+            pos.z = -halfCubeLength + radius;
+            v.z *= -1f;
+        }
+        else if (ballMaxZ > halfCubeLength) {
+            pos.z = halfCubeLength - radius;
+            v.z *= -1f;
+            // v.z *= coeffRestitution;
         }
     }
 
