@@ -110,15 +110,4 @@ public class BallController : MonoBehaviour
         Gizmos.DrawLine(backLeftUpPoint, backRightUpPoint);
     }
 
-    bool IsWithinBox() {
-        float halfCubeLength = cubeLength/2f;
-        float ballMinX = pos.x - radius;
-        float ballMinY = pos.y - radius;
-        float ballMinZ = pos.z - radius;
-        float ballMaxX = pos.x + radius;
-        float ballMaxY = pos.y + radius;
-        float ballMaxZ = pos.z + radius;
-        bool isWithinBox = (ballMinX >= halfCubeLength) && (ballMaxX <= halfCubeLength) && (ballMinY >= halfCubeLength) && (ballMaxY <= halfCubeLength) && (ballMinZ >= halfCubeLength) && (ballMaxZ <= halfCubeLength);
-        return isWithinBox;
-    }
 }
