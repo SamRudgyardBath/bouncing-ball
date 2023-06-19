@@ -24,8 +24,8 @@ public class BallController : MonoBehaviour
         pos = new Vector3(0, 0, 0);
         v = new Vector3(0, 0, 1);
         a = new Vector3(0, -9.81f, 0);
-        radius = Random.value * 5f;
-        transform.localScale = new Vector3(radius, radius, radius);
+        radius = 1f;
+        transform.localScale = new Vector3(2*radius, 2*radius, 2*radius);
     }
 
     // Update is called once per frame
