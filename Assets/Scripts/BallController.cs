@@ -40,8 +40,8 @@ public class BallController : MonoBehaviour
     void FixedUpdate() {
         for (int substep = 0; substep < noOfSubsteps; substep++) {
             // Update the ball's position and velocity each frame
-            pos += v * substep/noOfSubsteps * Time.deltaTime;
-            v += a * substep/noOfSubsteps * Time.deltaTime;
+            pos += v * substep/noOfSubsteps * Time.fixedDeltaTime;
+            v += a * substep/noOfSubsteps * Time.fixedDeltaTime;
         }
 
         // Bounce off of sides of the cube
