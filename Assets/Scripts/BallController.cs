@@ -45,6 +45,42 @@ public class BallController : MonoBehaviour
         }
 
         // Bounce off of sides of the cube
+        
+    }
+
+    /// <summary>
+    /// Callback to draw gizmos that are pickable and always drawn.
+    /// </summary>
+    void OnDrawGizmos() {
+        float halfCubeLength = cubeLength/2f;
+        Vector3 frontLeftDownPoint = new Vector3(halfCubeLength, -halfCubeLength, halfCubeLength);
+        Vector3 backLeftDownPoint = new Vector3(halfCubeLength, -halfCubeLength, -halfCubeLength);
+        Vector3 frontRightDownPoint = new Vector3(-halfCubeLength, -halfCubeLength, halfCubeLength);
+        Vector3 backRightDownPoint = new Vector3(-halfCubeLength, -halfCubeLength, -halfCubeLength);
+        Vector3 frontLeftUpPoint = new Vector3(halfCubeLength, halfCubeLength, halfCubeLength);
+        Vector3 backLeftUpPoint = new Vector3(halfCubeLength, halfCubeLength, -halfCubeLength);
+        Vector3 frontRightUpPoint = new Vector3(-halfCubeLength, halfCubeLength, halfCubeLength);
+        Vector3 backRightUpPoint = new Vector3(-halfCubeLength, halfCubeLength, -halfCubeLength);
+        
+        Gizmos.DrawLine(frontLeftDownPoint, backLeftDownPoint);
+        Gizmos.DrawLine(frontLeftDownPoint, frontLeftUpPoint);
+        Gizmos.DrawLine(frontLeftDownPoint, frontRightDownPoint);
+        Gizmos.DrawLine(frontLeftUpPoint, backLeftUpPoint);
+        Gizmos.DrawLine(backLeftDownPoint, backLeftUpPoint);
+        Gizmos.DrawLine(backLeftDownPoint, backRightDownPoint);
+        Gizmos.DrawLine(frontRightDownPoint, backRightDownPoint);
+        Gizmos.DrawLine(backRightDownPoint, backRightUpPoint);
+        Gizmos.DrawLine(frontRightDownPoint, frontRightUpPoint);
+        Gizmos.DrawLine(frontLeftUpPoint, frontRightUpPoint);
+        Gizmos.DrawLine(frontLeftUpPoint, frontRightUpPoint);
+        Gizmos.DrawLine(frontRightUpPoint, backRightUpPoint);
+        Gizmos.DrawLine(backLeftUpPoint, backRightUpPoint);
+    }
+
+    /// <summary>
+    /// Check if the ball collides with the ball
+    /// </summary>
+    void CheckForWallCollision() {
         float halfCubeLength = cubeLength/2f;
         float ballMinX = pos.x - radius;
         float ballMinY = pos.y - radius;
@@ -80,34 +116,4 @@ public class BallController : MonoBehaviour
             // v.z *= coeffRestitution;
         }
     }
-
-    /// <summary>
-    /// Callback to draw gizmos that are pickable and always drawn.
-    /// </summary>
-    void OnDrawGizmos() {
-        float halfCubeLength = cubeLength/2f;
-        Vector3 frontLeftDownPoint = new Vector3(halfCubeLength, -halfCubeLength, halfCubeLength);
-        Vector3 backLeftDownPoint = new Vector3(halfCubeLength, -halfCubeLength, -halfCubeLength);
-        Vector3 frontRightDownPoint = new Vector3(-halfCubeLength, -halfCubeLength, halfCubeLength);
-        Vector3 backRightDownPoint = new Vector3(-halfCubeLength, -halfCubeLength, -halfCubeLength);
-        Vector3 frontLeftUpPoint = new Vector3(halfCubeLength, halfCubeLength, halfCubeLength);
-        Vector3 backLeftUpPoint = new Vector3(halfCubeLength, halfCubeLength, -halfCubeLength);
-        Vector3 frontRightUpPoint = new Vector3(-halfCubeLength, halfCubeLength, halfCubeLength);
-        Vector3 backRightUpPoint = new Vector3(-halfCubeLength, halfCubeLength, -halfCubeLength);
-        
-        Gizmos.DrawLine(frontLeftDownPoint, backLeftDownPoint);
-        Gizmos.DrawLine(frontLeftDownPoint, frontLeftUpPoint);
-        Gizmos.DrawLine(frontLeftDownPoint, frontRightDownPoint);
-        Gizmos.DrawLine(frontLeftUpPoint, backLeftUpPoint);
-        Gizmos.DrawLine(backLeftDownPoint, backLeftUpPoint);
-        Gizmos.DrawLine(backLeftDownPoint, backRightDownPoint);
-        Gizmos.DrawLine(frontRightDownPoint, backRightDownPoint);
-        Gizmos.DrawLine(backRightDownPoint, backRightUpPoint);
-        Gizmos.DrawLine(frontRightDownPoint, frontRightUpPoint);
-        Gizmos.DrawLine(frontLeftUpPoint, frontRightUpPoint);
-        Gizmos.DrawLine(frontLeftUpPoint, frontRightUpPoint);
-        Gizmos.DrawLine(frontRightUpPoint, backRightUpPoint);
-        Gizmos.DrawLine(backLeftUpPoint, backRightUpPoint);
-    }
-
 }
